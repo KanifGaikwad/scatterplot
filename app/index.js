@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import Circle from '../app/draw-circle';
+import DashBoard from "./dashboard";
 
 class Index extends Component{
     render(){
-        return(<Circle/>)
-
+        return(<DashBoard/>)
     }
 }
 

@@ -9767,7 +9767,9 @@ var _reactDom = __webpack_require__(99);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _drawCircle = __webpack_require__(185);
+var _circle = __webpack_require__(185);
+
+var _circle2 = _interopRequireDefault(_circle);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -9789,7 +9791,7 @@ var Index = function (_Component) {
     _createClass(Index, [{
         key: 'render',
         value: function render() {
-            return _react2.default.createElement(_drawCircle.Circle, null);
+            return _react2.default.createElement(_circle2.default, null);
         }
     }]);
 
@@ -22434,9 +22436,6 @@ module.exports = ReactDOMInvalidARIAHook;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.Circle = undefined;
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(49);
 
@@ -22444,72 +22443,24 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+var Circle = function Circle() {
 
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+    var style = {
+        height: "5px",
+        width: "5px",
+        backgroundColo: "green",
+        borderRadiusR: "50%",
+        display: "inline-block"
+    };
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Circle = exports.Circle = function (_Component) {
-    _inherits(Circle, _Component);
-
-    function Circle() {
-        _classCallCheck(this, Circle);
-
-        return _possibleConstructorReturn(this, (Circle.__proto__ || Object.getPrototypeOf(Circle)).apply(this, arguments));
-    }
-
-    _createClass(Circle, [{
-        key: "componentDidMount",
-        value: function componentDidMount() {
-            Circle.drawCircle();
-        }
-    }, {
-        key: "render",
-        value: function render() {
-            return _react2.default.createElement(
-                "div",
-                null,
-                _react2.default.createElement(
-                    "canvas",
-                    { id: "myCanvas", width: "300", height: "150", style: "border:1px solid #d3d3d3;" },
-                    "Your browser does not support the HTML5 canvas tag."
-                )
-            );
-        }
-    }], [{
-        key: "drawCircle",
-        value: function drawCircle() {
-            var c = document.getElementById("myCanvas");
-            var ctx = c.getContext("2d");
-            ctx.beginPath();
-            ctx.arc(100, 75, 50, 0, 2 * Math.PI);
-            ctx.stroke();
-        }
-    }]);
-
-    return Circle;
-}(_react.Component);
-
-/*const Circle = () => {
-    function drawCircle() {
-        let c = document.getElementById("myCanvas");
-        let ctx = c.getContext("2d");
-        ctx.beginPath();
-        ctx.arc(100, 75, 50, 0, 2 * Math.PI);
-        ctx.stroke();
-    }
-
-    return (
-        <div>
-            <canvas id="myCanvas" width="300" height="150" style="border:1px solid #d3d3d3;">
-                Your browser does not support the HTML5 canvas tag.
-            </canvas>
-            {drawCircle()}
-        </div>
-
+    return _react2.default.createElement(
+        "div",
+        null,
+        _react2.default.createElement("span", { style: style })
     );
-};*/
+};
+
+exports.default = Circle;
 
 /***/ })
 /******/ ]);
