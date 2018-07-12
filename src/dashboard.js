@@ -1,60 +1,43 @@
 import Circle from "./circle";
 import React from "react";
+import math from 'mathjs';
+import toDate from 'normalize-date';
+import '../sass/scatterplot.scss';
 
-const DashBoard = () => {
-
-    const plotpoints = [
-        {
-            "start_time": "2017-11-29T04:56:12Z",
-            "status": "pass",
-            "duration": 126, // in seconds
-        },
-        {
-            "start_time": "2017-11-28T03:22:12Z",
-            "status": "error",
-            "duration": 205,
-        },
-        {
-            "start_time": "2017-11-28T02:24:12Z",
-            "status": "fail",
-            "duration": 20,
-        },
-        {
-            "start_time": "2017-11-28T05:24:12Z",
-            "status": "pass",
-            "duration": 90,
-        },
-        {
-            "start_time": "2017-11-29T06:24:12Z",
-            "status": "error",
-            "duration": 90,
-        },
-        {
-            "start_time": "2017-11-28T14:12:12Z",
-            "status": "pass",
-            "duration": 200,
+const DashBoard = ({plotpoints}) => {
+    const MAX_DURATION_LIMIT = 300;
+    const timeArray = plotpoints.map((point) => toDate(point.start_time).valueOf());
+    const MAX_TIME = Math.max(...timeArray);
+    const MIN_TIME = Math.min(...timeArray);
+    const calculatePosX = (duration) => {
+        return math.chain(duration)
+            .multiply(100)
+            .divide(MAX_DURATION_LIMIT)
+            .subtract(6.6666)
+            .done();
+    };
+    const calculatePosY = (rfcDate) => {
+        const res1 = math.chain(toDate(rfcDate).valueOf())
+            .subtract(MIN_TIME).done();
+        const res2 = math.chain(MAX_TIME)
+            .subtract(MIN_TIME)
+            .done();
+        return math.chain(res1).divide(res2).multiply(100).done();
+    };
+    const points = plotpoints.map((point, index) => {
+        return {
+            posX: calculatePosX(point.duration).toString().concat('%'),
+            posY: calculatePosY(point.start_time).toString().concat('%'),
+            status: point.status,
+            id: index
         }
-    ];
+    });
 
     return (
-        <div style={{
-            height: "400px",
-            width: "800px"
-        }}
-        >
-            <div style={{
-                height: "100%",
-                width: "100%",
-                border: "1px",
-                borderColor: "green",
-                borderBottomStyle: "solid",
-                borderLeftStyle: "solid",
-                position: "relative"
-            }}>
-                <Circle posX={'30%'} posY={'30%'} status={"pass"}/>
-                <Circle posX={'40%'} posY={'40%'} status={"error"}/>
-                <Circle posX={'90%'} posY={'90%'} status={"fail"}/>
-            </div>
+        <div className={'container-props'}>
+            {points.map((point) =>
+                <Circle key={point.id} posX={point.posX} posY={point.posY} status={point.status}/>
+            )}
         </div>
     );
 };

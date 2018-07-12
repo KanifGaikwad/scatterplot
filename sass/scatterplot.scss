@@ -1,7 +1,16 @@
-.circleProps {
-  height: 5px;
-  width: 5px;
-  background-color: green;
-  border-radius: 50%;
+.circle-props {
+  height: 20px;
+  width: 20px;
+  border-radius: 80%;
   display: inline-block;
+  position: absolute;
+}
+
+.container-props {
+  height: 100%;
+  width: 100%;
+  border: 1px green;
+  border-bottom-style: solid;
+  border-left-style: solid;
+  position: relative
 }

@@ -24,6 +24,8 @@
     "webpack-dev-server": "^3.1.4"
   },
   "dependencies": {
+    "mathjs": "^5.0.2",
+    "normalize-date": "0.0.4",
     "react": "^16.4.1",
     "react-dom": "^16.4.1"
   }
