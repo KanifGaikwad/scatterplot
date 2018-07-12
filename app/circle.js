@@ -3,17 +3,16 @@ import React from "react";
 const Circle = () => {
 
     const style = {
-        height: "10px",
-        width: "10px",
+        height: "20px",
+        width: "20px",
         backgroundColor: "green",
-        borderRadius: "50%",
-        display: "inline-block"
+        borderRadius: "80%",
+        display: "inline-block",
+        position:"absolute"
     };
 
     return (
-        <div>
             <span style={style}/>
-        </div>
     );
 };
 
