@@ -3,7 +3,11 @@ import ReactDOM from 'react-dom';
 import DashBoard from "./dashboard";
 
 class Index extends Component{
+
+
+
     render(){
+
         return(<DashBoard/>)
     }
 }

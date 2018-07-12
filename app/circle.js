@@ -1,14 +1,27 @@
 import React from "react";
 
-const Circle = () => {
+const Circle = (props) => {
+
+const {posX, posY, status} = props;
+const calculateColor = () => {
+    if(status === 'error'){
+         return 'red';
+    } else if(status == 'pass'){
+        return 'green';
+    } else if(status === 'fail'){
+        return 'yellow';
+    }
+    };
 
     const style = {
         height: "20px",
         width: "20px",
-        backgroundColor: "green",
+        backgroundColor: calculateColor(),
         borderRadius: "80%",
         display: "inline-block",
-        position:"absolute"
+        position:"absolute",
+        top:posX,
+        marginLeft:posY
     };
 
     return (
