@@ -1,28 +1,52 @@
+const HtmlWebPackPlugin = require("html-webpack-plugin");
+const path = require('path');
+const htmlWebpackPlugin = new HtmlWebPackPlugin({
+    template: "./example/index.html",
+    filename: "./index.html"
+});
+
 module.exports = {
-    entry: ['./app/index.js'],
+    entry: ["./example/index.js"],
     output: {
-        path: __dirname + '/build',
-        filename: 'bundle.js'
+        path: path.resolve('dist'),
+        filename: 'bundled.js'
     },
     module: {
-        loaders: [
+        rules: [
             {
-                loader: 'babel-loader',
                 test: /\.js$/,
                 exclude: /node_modules/,
-                query: {
-                    presets: ['es2015', 'react']
+                use: {
+                    loader: "babel-loader"
                 }
             },
             {
-                loader: 'css-loader',
                 test: /\.css$/,
+                use: [
+                    {
+                        loader: "style-loader"
+                    },
+                    {
+                        loader: "css-loader",
+                        options: {
+                            modules: true,
+                            importLoaders: 1,
+                            localIdentName: "[name][local][hash:base64]",
+                            sourceMap: true,
+                            minimize: true
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.scss$/,
+                use: [
+                    "style-loader", // creates style nodes from JS strings
+                    "css-loader", // translates CSS into CommonJS
+                    "sass-loader" // compiles Sass to CSS
+                ]
             }
         ]
     },
-    devServer: {
-        port: 3002,
-        contentBase: './build',
-        inline: true
-    }
+    plugins: [htmlWebpackPlugin]
 };
