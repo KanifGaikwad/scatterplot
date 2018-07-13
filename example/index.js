@@ -37,8 +37,8 @@ const Runner = () => {
     ];
 
     return (<div style={{
-        height: "300px",
-        width: "600px"
+        height: "200px",
+        width: "1000px"
     }}>
         <DashBoard plotpoints={plotpoints}/>
     </div>)

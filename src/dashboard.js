@@ -31,14 +31,39 @@ const DashBoard = ({plotpoints}) => {
             status: point.status,
             id: index
         }
-    });
+    })
+    const TIME_LINE_PROPS = [
+        {height: '16.7%', label: "3 min"},
+        {height: '16.7%', label: ""},
+        {height: '16.7%', label: "2 min"},
+        {height: '16.7%', label: ""},
+        {height: '16.7%', label: "1 min"},
+        {width: '16.7%', label: ""}];
+
+    const TIME_LINE_LABEL_PROPS = [
+        {height: '16.7%', label: "3 min"},
+        {height: '16.7%', label: "2 min"},
+        {height: '16.7%', label: "1 min"}];
 
     return (
-        <div className={'container-props'}>
-            {points.map((point) =>
-                <Circle key={point.id} posX={point.posX} posY={point.posY} status={point.status}/>
-            )}
-        </div>
+        <section className={'height-width-100'}>
+            <section className={'y-timeline-label-props'}>
+                {TIME_LINE_LABEL_PROPS.map((div) =>
+                    <div className={'y-timeline-label-div-props'}>
+                        <label className={'y-label-padding'}>{div.label}</label>
+                    </div>
+                )}
+            </section>
+            <aside className={'container-props'}>
+                {TIME_LINE_PROPS.map((div) =>
+                    <div className={'y-timeline-props'}/>
+                )}
+                {points.map((point) =>
+                    <Circle key={point.id} posX={point.posX} posY={point.posY} status={point.status}/>
+                )}
+            </aside>
+        </section>
+
     );
 };
 
