@@ -15,14 +15,24 @@ const Runner = () => {
             "duration": 205,
         },
         {
+            "start_time": "2017-11-22T03:22:12Z",
+            "status": "error",
+            "duration": 210,
+        },
+        {
             "start_time": "2017-11-23T02:24:12Z",
             "status": "fail",
-            "duration": 20,
+            "duration": 26,
         },
         {
             "start_time": "2017-11-21T05:24:12Z",
             "status": "pass",
-            "duration": 120,
+            "duration": 150,
+        },
+        {
+            "start_time": "2017-11-21T12:24:12Z",
+            "status": "pass",
+            "duration": 60,
         },
         {
             "start_time": "2017-11-29T06:24:12Z",

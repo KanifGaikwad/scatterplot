@@ -21,10 +21,17 @@
 }
 
 .y-timeline-props {
+  height: 100%;
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 1px;
+}
+
+.tr-1 td {
   height: 10%;
-  border: thin darkgray;
-  border-top-style: dotted;
-  border-spacing: 10px;
+  border: 1px darkgray;
+  border-top-style: dashed;
+  border-collapse: collapse;
 }
 
 .y-timeline-label-props {
@@ -38,8 +45,8 @@
   height: 20%;
 }
 
-.y-label-padding{
+.y-label-padding {
   float: right;
- padding-right: 12%;
-//  margin-top: -10%;
+  padding-right: 12%;
+  margin-top: -10%;
 }

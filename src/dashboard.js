@@ -37,7 +37,9 @@ const DashBoard = ({plotpoints}) => {
     const TIME_LINE_PROPS = () => {
         let PROPS = [];
         for (let i = 0; i < 10; i++) {
-            PROPS.push(<div key={i} className='y-timeline-props'/>)
+            PROPS.push(<tr className='tr-1' key={i}>
+                <td/>
+            </tr>)
         }
         return PROPS;
     };
@@ -59,7 +61,11 @@ const DashBoard = ({plotpoints}) => {
                 )}
             </section>
             <aside className={'container-props'}>
-                {TIME_LINE_PROPS()}
+                <table className='y-timeline-props'>
+                    <tbody>
+                    {TIME_LINE_PROPS()}
+                    </tbody>
+                </table>
                 {points.map((point, index) =>
                     <Circle key={index} posX={point.posX} posY={point.posY} status={point.status}/>
                 )}
