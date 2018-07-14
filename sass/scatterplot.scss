@@ -14,30 +14,32 @@
 .container-props {
   height: 100%;
   width: 92%;
-  border: 1px beige;
+  border: 1px darkgray;
   border-bottom-style: solid;
   position: relative;
   float: right;
 }
 
 .y-timeline-props {
-  border-top-style: dashed;
-  border-color: beige;
-  height: 15.1%;
+  height: 10%;
+  border: thin darkgray;
+  border-top-style: dotted;
+  border-spacing: 10px;
 }
 
 .y-timeline-label-props {
   height: 100%;
   width: 8%;
   float: left;
+  color: darkgray;
 }
 
 .y-timeline-label-div-props {
-  height: 33.3%;
+  height: 20%;
 }
 
 .y-label-padding{
   float: right;
-  padding-right: 12%;
-  margin-top: -10%;
+ padding-right: 12%;
+//  margin-top: -10%;
 }

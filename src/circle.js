@@ -10,8 +10,8 @@ const Circle = (props) => {
     };
     let style = {
         backgroundColor: STATUS_MAP[status],
-        bottom: posX,
-        left: posY
+        bottom: posY,
+        left: posX
     };
 
     return (

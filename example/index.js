@@ -22,7 +22,7 @@ const Runner = () => {
         {
             "start_time": "2017-11-21T05:24:12Z",
             "status": "pass",
-            "duration": 90,
+            "duration": 120,
         },
         {
             "start_time": "2017-11-29T06:24:12Z",
@@ -37,8 +37,9 @@ const Runner = () => {
     ];
 
     return (<div style={{
-        height: "200px",
-        width: "1000px"
+        height: "250px",
+        width: "1000px",
+        marginTop:"10%"
     }}>
         <DashBoard plotpoints={plotpoints}/>
     </div>)
