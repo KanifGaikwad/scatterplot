@@ -3,6 +3,8 @@ import React from "react";
 import math from 'mathjs';
 import toDate from 'normalize-date';
 import '../sass/scatterplot.scss';
+import SplitYTimeline from './split-y-timeline';
+import LabelYTimeline from "./label-y-timeline";
 
 const DashBoard = ({plotpoints}) => {
     const MAX_DURATION_LIMIT = 300;
@@ -34,44 +36,16 @@ const DashBoard = ({plotpoints}) => {
             id: index
         }
     });
-    const TIME_LINE_PROPS = () => {
-        let PROPS = [];
-        for (let i = 0; i < 10; i++) {
-            PROPS.push(<tr className='tr-1' key={i}>
-                <td/>
-            </tr>)
-        }
-        return PROPS;
-    };
-
-    const TIME_LINE_LABEL_PROPS = [
-        {label: "5 min"},
-        {label: "4 min"},
-        {label: "3 min"},
-        {label: "2 min"},
-        {label: "1 min"}];
-
     return (
         <section className={'height-width-100'}>
-            <section className='y-timeline-label-props'>
-                {TIME_LINE_LABEL_PROPS.map((div, index) =>
-                    <div key={index} className={'y-timeline-label-div-props'}>
-                        <label className={'y-label-padding'}>{div.label}</label>
-                    </div>
-                )}
-            </section>
+            <LabelYTimeline/>
             <aside className={'container-props'}>
-                <table className='y-timeline-props'>
-                    <tbody>
-                    {TIME_LINE_PROPS()}
-                    </tbody>
-                </table>
+                <SplitYTimeline/>
                 {points.map((point, index) =>
                     <Circle key={index} posX={point.posX} posY={point.posY} status={point.status}/>
                 )}
             </aside>
         </section>
-
     );
 };
 
