@@ -4,13 +4,30 @@ import math from 'mathjs';
 import toDate from 'normalize-date';
 import '../sass/scatterplot.scss';
 import SplitYTimeline from './split-y-timeline';
-import LabelYTimeline from "./label-y-timeline";
+import LabelYTimeline from './label-y-timeline';
+import _ from 'underscore';
+import dateArithmetic from 'date-arithmetic';
+import SplitXTimeLine from './split-x-timeline';
 
 const DashBoard = ({plotpoints}) => {
+    const plotpointsWithNumberDate = plotpoints.map((point) => {
+        point.dateInNumber = toDate(point.start_time).valueOf();
+        return point;
+    });
+    const sortedByDate = _.sortBy(plotpointsWithNumberDate, (plotPoint) => plotPoint.dateInNumber);
+    const start_day = toDate(_.first(sortedByDate).start_time);
+    const last_day = toDate(_.last(sortedByDate).start_time);
+    const numberOfDays = dateArithmetic.diff(start_day, last_day, "day", false);
     const MAX_DURATION_LIMIT = 300;
-    const timeArray = plotpoints.map((point) => toDate(point.start_time).valueOf());
-    const MAX_TIME = Math.max(...timeArray);
-    const MIN_TIME = Math.min(...timeArray);
+    const MIN_TIME = _.first(sortedByDate).dateInNumber;
+    const MAX_TIME = _.last(sortedByDate).dateInNumber;
+
+    const splitXTimeLineProps = {
+        numberOfDays,
+        start_day,
+        last_day
+    };
+
     const toPosY = (duration) => {
         return math.chain(duration)
             .multiply(100)
@@ -28,7 +45,7 @@ const DashBoard = ({plotpoints}) => {
             .multiply(100)
             .done();
     };
-    const points = plotpoints.map((point, index) => {
+    const points = sortedByDate.map((point, index) => {
         return {
             posY: toPosY(point.duration).toString().concat('%'),
             posX: toPosX(point.start_time).toString().concat('%'),
@@ -44,6 +61,7 @@ const DashBoard = ({plotpoints}) => {
                 {points.map((point, index) =>
                     <Circle key={index} posX={point.posX} posY={point.posY} status={point.status}/>
                 )}
+                <SplitXTimeLine splitXTimeLineProps={splitXTimeLineProps}/>
             </aside>
         </section>
     );

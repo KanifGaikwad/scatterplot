@@ -43,16 +43,21 @@ const Runner = () => {
             "start_time": "2017-11-26T14:12:12Z",
             "status": "pass",
             "duration": 200,
+        },
+        {
+            "start_time": "2017-11-20T14:12:12Z",
+            "status": "pass",
+            "duration": 200,
         }
     ];
 
     return (<div style={{
         height: "300px",
-        width: "900px",
+        width: "1200px",
         marginTop:"10%"
     }}>
         <DashBoard plotpoints={plotpoints}/>
     </div>)
-}
+};
 
 ReactDOM.render(<Runner/>, document.getElementById('index'));
