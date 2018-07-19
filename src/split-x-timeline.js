@@ -1,6 +1,7 @@
 import React from 'react';
 import math from 'mathjs';
 import '../sass/scatterplot.scss';
+import dateArithmetic from 'date-arithmetic';
 
 const SplitXTimeLine = (props) => {
     const {numberOfDays, start_day} = props.splitXTimeLineProps;
@@ -30,7 +31,7 @@ const SplitXTimeLine = (props) => {
         for (let i = 0; i < numberOfDays; i++) {
             PROPS.push(<td key={i}>
                 <label className={'x-label-props'}>
-                    {start_day.toDateString()}
+                    {dateArithmetic.add(start_day, i, 'day').toDateString()}
                 </label>
             </td>)
         }
