@@ -28,6 +28,11 @@ const Runner = () => {
             "start_time": "2017-05-21T05:24:12Z",
             "status": "pass",
             "duration": 150,
+        },
+        {
+            "start_time": "2017-05-19T05:24:12Z",
+            "status": "error",
+            "duration": 286,
         }
     ];
 
