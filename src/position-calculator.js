@@ -3,7 +3,7 @@ import toDate from 'normalize-date';
 import _ from 'underscore';
 import dateArithmetic from 'date-arithmetic';
 
-const calculatePosition = (plotPoints) =>{
+const calculatePosition = (plotPoints) => {
     const MAX_DURATION_LIMIT = 300;
     const plotPointsWithNumberDate = plotPoints.map((point) => {
         point.date = toDate(point.start_time);
@@ -12,18 +12,16 @@ const calculatePosition = (plotPoints) =>{
     const sortedByDate = _.sortBy(plotPointsWithNumberDate, (plotPoint) => plotPoint.date.getTime());
     const start_date = _.first(sortedByDate).date;
     const last_date = _.last(sortedByDate).date;
-    let minDay = toDate(`${start_date.getFullYear()}-${start_date.getMonth()+1}-${start_date.getDate()}T00:00:00Z`);
-    let maxDay = toDate(`${last_date.getFullYear()}-${last_date.getMonth()+1}-${last_date.getDate()+1}T00:00:00Z`);
+    let minDay = toDate(`${start_date.getFullYear()}-${start_date.getMonth() + 1}-${start_date.getDate()}T00:00:00Z`);
+    let maxDay = toDate(`${last_date.getFullYear()}-${last_date.getMonth() + 1}-${last_date.getDate() + 1}T00:00:00Z`);
     const numberOfDays = dateArithmetic.diff(minDay, maxDay, 'day', false);
     const MIN_TIME = minDay.valueOf();
     const MAX_TIME = maxDay.valueOf();
-
     const splitXTimeLineProps = {
         numberOfDays,
         start_day: start_date,
         last_day: last_date
     };
-
     const toPosY = (duration) => {
         return math.chain(duration)
             .multiply(100)
@@ -43,8 +41,8 @@ const calculatePosition = (plotPoints) =>{
     };
     const points = sortedByDate.map((point, index) => {
         return {
-            posY: toPosY(point.duration).toString().concat('%'),
-            posX: toPosX(point.start_time).toString().concat('%'),
+            posY: `${toPosY(point.duration)}%`,
+            posX: `${toPosX(point.start_time)}%`,
             status: point.status,
             id: index
         }

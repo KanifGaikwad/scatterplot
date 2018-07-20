@@ -1,4 +1,4 @@
-import Circle from "./circle";
+import {Circle} from "./circle";
 import React from "react";
 import '../sass/scatterplot.scss';
 import SplitYTimeline from './split-y-timeline';

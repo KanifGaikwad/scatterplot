@@ -8,8 +8,8 @@ const SplitXTimeLine = (props) => {
     const percentWidth = math.chain(100)
         .divide(numberOfDays)
         .done();
-    const style = {
-        width: percentWidth.toString().concat('%'),
+    const style_td = {
+        width: `${percentWidth}%`,
         borderColor: "darkgray",
         height: "5px",
         borderLeftStyle: "solid",
@@ -22,11 +22,11 @@ const SplitXTimeLine = (props) => {
     const TIME_LINE_PROPS = () => {
         let PROPS = [];
         for (let i = 0; i < numberOfDays; i++) {
-            PROPS.push(<td key={i} style={style}/>);
+            PROPS.push(<td key={i} style={style_td}/>);
         }
         return PROPS;
     };
-    const TIME_LINE_PROPS_LABEL = () => {
+    const TIME_LINE_LABEL_PROPS = () => {
         let PROPS = [];
         for (let i = 0; i < numberOfDays; i++) {
             PROPS.push(<td key={i}>
@@ -44,7 +44,7 @@ const SplitXTimeLine = (props) => {
                 {TIME_LINE_PROPS()}
             </tr>
             <tr>
-                {TIME_LINE_PROPS_LABEL()}
+                {TIME_LINE_LABEL_PROPS()}
             </tr>
             </tbody>
         </table>
