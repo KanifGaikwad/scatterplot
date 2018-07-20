@@ -6,7 +6,7 @@ import dateArithmetic from 'date-arithmetic';
 const SplitXTimeLine = (props) => {
     const {numberOfDays, start_day} = props.splitXTimeLineProps;
     const percentWidth = math.chain(100)
-        .divide(8)
+        .divide(numberOfDays)
         .done();
     const style = {
         width: percentWidth.toString().concat('%'),

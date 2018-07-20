@@ -10,22 +10,24 @@ import dateArithmetic from 'date-arithmetic';
 import SplitXTimeLine from './split-x-timeline';
 
 const DashBoard = ({plotpoints}) => {
+    const MAX_DURATION_LIMIT = 300;
     const plotpointsWithNumberDate = plotpoints.map((point) => {
-        point.dateInNumber = toDate(point.start_time).valueOf();
+        point.date = toDate(point.start_time);
         return point;
     });
-    const sortedByDate = _.sortBy(plotpointsWithNumberDate, (plotPoint) => plotPoint.dateInNumber);
-    const start_day = toDate(_.first(sortedByDate).start_time);
-    const last_day = toDate(_.last(sortedByDate).start_time);
-    const numberOfDays = dateArithmetic.diff(start_day, last_day, "day", false);
-    const MAX_DURATION_LIMIT = 300;
-    const MIN_TIME = _.first(sortedByDate).dateInNumber;
-    const MAX_TIME = _.last(sortedByDate).dateInNumber;
+    const sortedByDate = _.sortBy(plotpointsWithNumberDate, (plotPoint) => plotPoint.date.getTime());
+    const start_date = _.first(sortedByDate).date;
+    const last_date = _.last(sortedByDate).date;
+    let minDay = toDate(`${start_date.getFullYear()}-${start_date.getMonth()+1}-${start_date.getDate()}T00:00:00Z`);
+    let maxDay = toDate(`${last_date.getFullYear()}-${last_date.getMonth()+1}-${last_date.getDate()+1}T00:00:00Z`);
+    const numberOfDays = dateArithmetic.diff(minDay, maxDay, "day", false);
+    const MIN_TIME = minDay.valueOf();
+    const MAX_TIME = maxDay.valueOf();
 
     const splitXTimeLineProps = {
         numberOfDays,
-        start_day,
-        last_day
+        start_day: start_date,
+        last_day: last_date
     };
 
     const toPosY = (duration) => {
