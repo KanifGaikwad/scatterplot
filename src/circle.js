@@ -13,17 +13,10 @@ const Circle = (props) => {
         bottom: posY,
         left: posX
     };
-    let style_1 = {
-        bottom: posY,
-        left: posX
-    };
 
     return (
         <div>
-{/*
-            <span style={style_1} className={'circle-props-1'}/>
-*/}
-            <span style={style} className={'circle-props'}/>
+            <span style={style} className={'circle-clicked-props'}/>
         </div>
     );
 };
